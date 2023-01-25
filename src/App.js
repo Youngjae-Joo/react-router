@@ -1,16 +1,21 @@
-import { Route, Routes } from "react-router-dom";
-import NewsHome from "./component2/NewsHome";
-import Header from './layout/Header';
+import A from "./component3/A";
+import B from "./component3/B";
+import { UserProvider } from "./contexts/contextAPI2";
 
 const App = () => {
+    /*
+    전역데이터관리 ContextAPI
+    
+    1. 외부 ContextAPI2의 컨슈머, 프로바이더 export
+    2. root에서는 export된 프로바이더로 감싸줍니다.
+    3. 자식컴포넌트에서는 useContext(컨텍스트명)를 이용해서 데이터를 핸들링
+    */
 
     return (
-        <Routes>
-            <Route element={<Header/>}>
-                <Route path="/" element={<NewsHome/>}/>
-                <Route path="/:category" element={<NewsHome/>}/>
-            </Route>
-        </Routes>
+        <UserProvider>
+            <A/>
+            <B/>
+        </UserProvider>
     )
 }
 
