@@ -1,21 +1,19 @@
-import A from "./component3/A";
-import B from "./component3/B";
-import { UserProvider } from "./contexts/contextAPI2";
+import axios from "axios";
 
-const App = () => {
-    /*
-    전역데이터관리 ContextAPI
-    
-    1. 외부 ContextAPI2의 컨슈머, 프로바이더 export
-    2. root에서는 export된 프로바이더로 감싸줍니다.
-    3. 자식컴포넌트에서는 useContext(컨텍스트명)를 이용해서 데이터를 핸들링
-    */
+const App=()=>{
 
-    return (
-        <UserProvider>
-            <A/>
-            <B/>
-        </UserProvider>
+    const handleClick= async()=>{
+        const data={"num":30,"id":"kier","name":"키에르"};
+      const result=await axios.post("http://localhost:8383/getJson", data); 
+
+      console.log(result);
+    }
+
+
+    return(
+        <div>
+            <input type="button" onClick={handleClick} value="데이터요청하기"/>
+        </div>
     )
 }
 
